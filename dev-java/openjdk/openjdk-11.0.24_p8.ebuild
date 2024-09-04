@@ -50,7 +50,7 @@ S="${WORKDIR}/jdk${SLOT}u-jdk-${MY_PV}"
 
 LICENSE="GPL-2-with-classpath-exception"
 SLOT="${MY_PV%%[.+]*}"
-KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~riscv ~x86"
+KEYWORDS="amd64 ~arm arm64 ppc64 ~riscv x86"
 
 IUSE="alsa big-endian cups debug doc examples headless-awt javafx +jbootstrap lto selinux source system-bootstrap systemtap"
 
@@ -161,6 +161,11 @@ src_configure() {
 	if ! use system-bootstrap; then
 		local xpakvar="${ARCH^^}_XPAK"
 		export JDK_HOME="${WORKDIR}/openjdk-bootstrap-${!xpakvar}"
+	fi
+
+	# Workaround for bug #938302
+	if use systemtap && ! has_version "dev-debug/systemtap[dtrace-symlink(-)]" ; then
+		export DTRACE="${BROOT}"/usr/bin/stap-dtrace
 	fi
 
 	# Work around stack alignment issue, bug #647954.

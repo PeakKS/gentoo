@@ -10,7 +10,7 @@ DESCRIPTION="QRCode and data matrix barcode library"
 HOMEPAGE="https://invent.kde.org/frameworks/prison"
 
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
+KEYWORDS="amd64 arm64 ~ppc64 ~riscv ~x86"
 IUSE="qml"
 
 RDEPEND="
@@ -24,6 +24,8 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	test? ( >=dev-qt/qtbase-${QTMIN}:6[concurrent,widgets] )
 "
+
+PATCHES=( "${FILESDIR}/${P}-cmake.patch" ) # bug 938343
 
 src_configure() {
 	local mycmakeargs=(

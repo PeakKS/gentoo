@@ -23,17 +23,17 @@ S="${WORKDIR}/mysql-connector-j-${PV}"
 
 LICENSE="GPL-2-with-MySQL-FLOSS-exception"
 SLOT="0"
-KEYWORDS="amd64 ppc64 x86"
+KEYWORDS="amd64 ~ppc64 ~x86"
 
 CP_DEPEND="
 	dev-java/c3p0:0
 	<dev-java/protobuf-java-3.26.0:0
 	dev-java/slf4j-api:0
 "
-DEPEND=" ${CP_DEPEND}
+DEPEND="${CP_DEPEND}
 	>=virtual/jdk-1.8:*
 "
-RDEPEND=" ${CP_DEPEND}
+RDEPEND="${CP_DEPEND}
 	>=virtual/jre-1.8:*
 "
 

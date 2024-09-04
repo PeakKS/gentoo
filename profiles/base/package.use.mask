@@ -6,6 +6,29 @@
 # This file is only for generic masks. For arch-specific masks (i.e.
 # mask everywhere, unmask on arch/*) use arch/base.
 
+# Sam James <sam@gentoo.org> (2024-09-03)
+# Causes crashes with e.g. dlz+samba (bug #938955)
+net-dns/bind jemalloc
+
+# Andreas Sturmlechner <asturm@gentoo.org> (2024-09-02)
+# kde-plasma/print-manager:5 and kde-apps/khelpcenter:5 cleanup
+kde-plasma/plasma-meta:5 cups handbook
+
+# Andreas Sturmlechner <asturm@gentoo.org> (2024-09-02)
+# Prepare kde-apps/kaccounts-integration:5 cleanup
+kde-plasma/plasma-desktop:5 kaccounts
+kde-plasma/plasma-welcome:5 kaccounts
+
+# Andreas Sturmlechner <asturm@gentoo.org> (2024-09-01)
+# Prepare for dev-util/kdevelop:5 removal
+kde-apps/umbrello:5 php
+
+# Andreas Sturmlechner <asturm@gentoo.org> (2024-08-31)
+# Prepare for KDE PIM 5 removal and avoid conflicts w/ KDE PIM 6
+app-office/kmymoney:5 addressbook
+app-office/kraft:5 pim
+media-gfx/digikam:5 addressbook
+
 # Viorel Munteanu <ceamac@gentoo.org> (2024-07-26)
 # Branch 7.1 needs a new BDEPEND for doc
 >=app-emulation/virtualbox-7.1 doc
@@ -40,7 +63,7 @@ net-misc/openssh xmss
 # Matt Turner <mattst88@gentoo.org> (2024-05-08)
 # Brand new, introduces lots of new aspects to the build.
 # Masked for further testing.
-media-libs/mesa video_cards_nvk
+<media-libs/mesa-24.2 video_cards_nvk
 
 # Michał Górny <mgorny@gentoo.org> (2024-04-27)
 # dev-python/uv is nowhere near ready to be stabilized.
@@ -54,10 +77,6 @@ app-admin/testdisk ewf
 # Mike Gilbert <floppym@gentoo.org> (2024-04-18)
 # Wayland client is broken/deprecated by upstream. Bug 930197.
 >=net-misc/freerdp-3 wayland
-
-# Andreas Sturmlechner <asturm@gentoo.org> (2024-04-06)
-# Depends on last-rited kde-apps/ktp-accounts-kcm
-dev-util/kdevelop reviewboard
 
 # Michał Górny <mgorny@gentoo.org> (2024-03-26)
 # sys-auth/pam_ssh is being last rited, bug #892031.
@@ -683,7 +702,7 @@ dev-python/statsmodels doc
 # Craig Andrews <candrews@gentoo.org> (2019-09-12)
 # OpenSSL (as of version 1.1.1) doesn't have APIs for QUIC support
 # see https://github.com/openssl/openssl/pull/8797
-net-libs/ngtcp2 ssl
+net-libs/ngtcp2 openssl
 net-misc/curl nghttp3
 
 # Thomas Deutschmann <whissi@gentoo.org> (2019-09-02)

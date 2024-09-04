@@ -13,7 +13,7 @@ if [[ ${PV} == *9999* ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://github.com/KhronosGroup/${MY_PN}/archive/vulkan-sdk-${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~ppc ~ppc64 ~riscv ~x86"
+	KEYWORDS="amd64 arm ~arm64 ~loong ~ppc ~ppc64 ~riscv x86"
 	S="${WORKDIR}"/${MY_PN}-vulkan-sdk-${PV}
 fi
 
@@ -27,7 +27,7 @@ IUSE="wayland X"
 RDEPEND="~dev-util/spirv-tools-${PV}[${MULTILIB_USEDEP}]"
 DEPEND="${RDEPEND}
 	${PYTHON_DEPS}
-	>=dev-cpp/robin-hood-hashing-3.11.5
+	>=dev-cpp/robin-hood-hashing-3.11.5-r2
 	~dev-util/glslang-${PV}:=[${MULTILIB_USEDEP}]
 	~dev-util/spirv-headers-${PV}
 	~dev-util/vulkan-headers-${PV}

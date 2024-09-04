@@ -3,7 +3,7 @@
 
 EAPI=8
 
-FIREFOX_PATCHSET="firefox-128esr-patches-01.tar.xz"
+FIREFOX_PATCHSET="firefox-128esr-patches-02.tar.xz"
 
 LLVM_COMPAT=( 17 18 )
 
@@ -854,9 +854,10 @@ src_configure() {
 		mozconfig_add_options_ac '' --enable-sandbox
 	fi
 
-	# Enable JIT on riscv64 explicitly
-	# Can be removed once upstream enable it by default in the future.
-	use riscv && mozconfig_add_options_ac 'Enable JIT for RISC-V 64' --enable-jit
+	# Enable JIT on riscv64 explicitly, since it's not activated automatically via "known arches" list.
+	# Update 128.1.0: Disable jit on riscv (this line can be blanked to disable by default),
+	# bgo#937867.
+	use riscv && mozconfig_add_options_ac 'Disable JIT for RISC-V 64' --disable-jit
 
 	if [[ -s "${S}/api-google.key" ]] ; then
 		local key_origin="Gentoo default"
